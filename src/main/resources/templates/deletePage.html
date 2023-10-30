@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="styleHomePage.css">
+</head>
+<body>
+<input type="checkbox" id="check">
+<label for="check">
+    <i class="fas fa-bars" id="btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+</label>
+<div class="sidebar">
+    <header>OnlineDiary</header>
+    <ul>
+        <li><a href="#"><i class="fas fa-qrcode"></i>New note</a></li>
+        <li><a href="#"><i class="fas fa-qrcode"></i>Edit note</a></li>
+        <li><a href="#"><i class="fas fa-qrcode"></i>Delete note</a></li>
+    </ul>
+</div>
+<section></section>
+
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+    }
+
+    .input-container label {
+        font-weight: bold;
+        font-size: 1.5rem;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .input-container input {
+        width: 70%;
+        font-size: 1.5rem;
+    }
+
+    .input-container textarea {
+        width: 100%;
+        height: 70vh;
+        font-size: 1.5rem;
+    }
+
+
+    .button-container button{
+        position: relative;
+        width:150px;
+        height:50px;
+    }й
+
+    .ButtonCancel{
+        position:relative;
+        right:750px;
+        top:60px;
+    }
+
+    .ButtonSave{
+        position:relative;
+        left:750px;
+        top:10px;
+
+    }
+
+</style>
+</body>
+<body>
+<div class="input-container">
+    <label for="theme">Тема</label>
+    <input type="text" id="theme" name="theme">
+</div>
+
+<div class="input-container">
+    <textarea id="entry" name="entry"></textarea>
+</div>
+
+<button onclick="openBlankPage()" style="width:150px;height:50px" class="ButtonCancel" align=”right”>Отмена</button>
+<button onclick="openTablePage()" style="width:150px;height:50px" class="ButtonSave">Удалить</button>
+
+<script>
+    function openBlankPage() {
+        window.open('', '_blank');
+    }
+
+    function openTablePage() {
+        window.open('table.html', '_blank');
+    }
+</script>
+</body>
+</html>
+</body>
+</html>
+
