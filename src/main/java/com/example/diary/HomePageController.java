@@ -1,9 +1,9 @@
-//package com.example.diary;
-//
-//import ch.qos.logback.core.model.Model;
-//import org.springframework.web.bind.annotation.GetMapping;
-//
-//public class HomePageController {
+package com.example.diary;
+
+import ch.qos.logback.core.model.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+public class HomePageController {
 //    @GetMapping("/")
 //    public String home() {
 //        return "homePage"; // Это возвращает имя HTML-файла для домашней страницы (без расширения .html)
@@ -38,6 +38,6 @@
 //        model.addAttribute("grades", schedule.getNextWeekGrades());
 //        return "homePage";
 //    }
-//}
+}
 
 

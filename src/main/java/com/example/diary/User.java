@@ -15,6 +15,9 @@ public class User {
     private String password;
     private boolean enabled;
 
+    public User(String username, String encodedPassword) {
+    }
+
     public Long getId() {
         return id;
     }

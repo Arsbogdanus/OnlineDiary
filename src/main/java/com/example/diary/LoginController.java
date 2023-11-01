@@ -17,7 +17,6 @@ public class LoginController {
         if (logout != null) {
             model.addAttribute("message", "Вы успешно вышли из системы");
         }
-
         return "login";
     }
 
@@ -35,7 +34,6 @@ public class LoginController {
         }
     }
 
-
     private boolean checkCredentials(String username, String password) {
 
         // Здесь должна быть ваша логика проверки учетных данных
@@ -49,4 +47,3 @@ public class LoginController {
         }
     }
 }
-
