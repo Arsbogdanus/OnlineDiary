@@ -18,45 +18,25 @@
         <li><a href="/Diary/src/main/resources/templates/deletePage.html"><i class="fas fa-qrcode"></i>Delete note</a>
         <li><a href="http://maps.google.ru/maps"><i class="fas fa-qrcode"></i>Google Maps</a>
         <li><a href="http://mathsolver.microsoft.com/ru/algebra-calculator"><i class="fas fa-qrcode"></i>Calculator</a>
+        <li><a href="/Diary/src/main/resources/templates/login.html" id="buttonExit"><i
+                class="fas fa-qrcode"></i>Exit</a>
         </li>
     </ul>
 </div>
-<section></section>
-
 <style>
-    body {
+    body, html {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100vh;
-        margin: 0;
-    }
-
-    .input-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 80%;
-    }
-
-    .input-container label {
-        font-weight: bold;
-        font-size: 1.5rem;
-        text-align: center;
-        width: 100%;
-        margin-bottom: 1rem;
-    }
-
-    .input-container input {
-        width: 70%;
-        font-size: 1.5rem;
     }
 
     .input-container textarea {
         width: 100%;
-        height: 70vh;
-        font-size: 1.5rem;
+        height: 100%;
+        resize: none;
+        border: none;
+        outline: none;
     }
 
 
@@ -67,43 +47,44 @@
     }
 
     .ButtonCancel {
-        position: relative;
-        right: 750px;
-        top: 60px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        margin: 15px;
+        padding: 10px;
+        background-color: #103350;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
     }
 
     .ButtonSave {
-        position: relative;
-        left: 750px;
-        top: 10px;
-
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin: 15px;
+        padding: 10px;
+        background-color: #103350;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
     }
 
 </style>
-</body>
-<body>
 <div class="input-container">
-    <label for="theme">Тема</label>
-    <input type="text" id="theme" name="theme">
+    <textarea id="entry" name="entry">ку-ку</textarea>
 </div>
+<button style="width:150px;height:50px" class="ButtonCancel" align=”right”><a
+        href="/Diary/src/main/resources/templates/homePage.html"
+        style="color: lightgray; text-decoration: none;">Отмена </a></button>
+<button style="width:150px; height:50px; color: lightgray" class="ButtonSave">Обновить</button>
 
-<div class="input-container">
-    <textarea id="entry" name="entry"></textarea>
-</div>
-
-<button onclick="openBlankPage()" style="width:150px;height:50px" class="ButtonCancel" align=”right”>Отмена</button>
-<button onclick="openTablePage()" style="width:150px;height:50px" class="ButtonSave">Обновить</button>
 
 <script>
-    function openBlankPage() {
-        window.open('', '_blank');
-    }
 
     function openTablePage() {
-        window.open('table.html', '_blank');
+        window.open('/Diary/src/main/resources/templates/homePage.html', '_blank');
     }
 </script>
-</body>
-</html>
 </body>
 </html>

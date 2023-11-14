@@ -129,5 +129,3 @@ label #cancel{
 #check:checked ~ label #cancel{
     left: 195px;
 }
-
-section{}

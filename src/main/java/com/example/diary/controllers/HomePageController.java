@@ -1,7 +1,4 @@
-package com.example.diary;
-
-import ch.qos.logback.core.model.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+package com.example.diary.controllers;
 
 public class HomePageController {
 //    @GetMapping("/")
