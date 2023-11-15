@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,19 +31,19 @@
             <div class="card">
                 <div class="card-header text-center">Регистрация</div>
                 <div class="card-body">
-                    <form th:action="@{/register}" method="post">
+                    <form th:method="POST" th:action="@{/people}" th:object="${person}">
                         <div class="form-group">
-                            <label for="username">Имя пользователя:</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
+                            <label for="username">Email:</label>
+                            <input type="text" th:field="*{email}" class="form-control" id="username"/>
                         </div>
                         <div class="form-group">
-                            <label for="password">Пароль:</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <label for="password">Password:</label>
+                            <input type="password" th:field="*{password}" class="form-control" id="password" name="password" />
                         </div>
-                        <div class="form-group">
-                            <label for="confirmPassword">Подтвердите пароль:</label>
-                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label for="confirmPassword">Подтвердите пароль:</label>-->
+<!--                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" />-->
+<!--                        </div>-->
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary"><a href="/Diary/src/main/resources/templates/Login.html" style="color: white; text-decoration: none;">Зарегистрироваться</a></button>
                         </div>

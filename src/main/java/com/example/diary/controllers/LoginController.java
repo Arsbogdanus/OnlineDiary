@@ -2,12 +2,12 @@ package com.example.diary.controllers;
 
 import com.example.diary.dao.PersonDAO;
 import com.example.diary.models.Person;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/login")
@@ -23,8 +23,23 @@ public class LoginController {
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("person", personDAO.show(id));
-        return "templates/show";
+        return "templates/login";
     }
+
+    @GetMapping("/{id}")
+    public String create(@ModelAttribute("person") Person person) {
+        return "templates/createAccount";
+    }
+
+    @PostMapping()
+    public String create(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
+    personDAO.save(person);
+    if (bindingResult.hasErrors()){
+        return "templates/createAccount";
+    }
+        return "redirect:/people";
+    }
+
 
 
 //    @GetMapping("/login")

@@ -3,10 +3,7 @@ package com.example.diary.dao;
 import com.example.diary.models.Person;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +15,7 @@ public class PersonDAO {
     private static final String PASSWORD = "mysql";
 
 
-    private static Connection connection;
+    private static final Connection connection;
 
     static {
         try {
@@ -34,17 +31,36 @@ public class PersonDAO {
         }
     }
 
-    private List<Person> people;
-
-
     public Person show(int id){
-        return people.stream().filter(person -> person.getId() == id).findAny().orElse(null);
+        Person person = null;
+
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("SELECT * FROM Person WHERE id=?");
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            resultSet.next();
+
+            person = new Person();
+
+            person.setId(resultSet.getInt("id"));
+            person.setPassword(resultSet.getString("password"));
+            person.setEmail(resultSet.getString("email"));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return person;
     }
     public void save(Person person){
         try {
-            Statement statement = connection.createStatement();
-            String SQL = "INSERT INTO Person VALUES(" + 1 +",'" + person.getName() + "'" +
-                    "'," + person.getName() + ",'" + person.getEmail() + "')";
+            PreparedStatement preparedstatement = connection.prepareStatement("INSERT INTO Person VALUES(1, ?, ?)");
+
+            preparedstatement.setString(2, person.getEmail());
+            preparedstatement.setString(1, person.getPassword());
+
+            preparedstatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

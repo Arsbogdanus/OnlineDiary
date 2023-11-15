@@ -1,18 +1,24 @@
 package com.example.diary.models;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 public class Person {
     private int id;
-    private String name;
-    private String email;
+    @Size(min = 5, max = 10, message = "Password should be between 5 and 10 characters")
     private String password;
+    @NotEmpty(message = "Email should not be empty")
+    @Email
+    private String email;
 
-
-    public Person(int id, String name, String email, String password) {
+    public Person(int id, String email, String password) {
         this.id = id;
-        this.name = name;
         this.email = email;
         this.password = password;
     }
+
+    public Person() {}
 
     public int getId() {
         return id;
@@ -22,9 +28,6 @@ public class Person {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
 
     public String getEmail() {
         return email;
@@ -40,10 +43,5 @@ public class Person {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
