@@ -40,17 +40,15 @@
                 <div class="card-body">
                     <form th:action="@{/login}" method="post">
                         <div class="form-group">
-                            <label for="username">Имя пользователя:</label>
-                            <input type="text" class="form-control" id="username" name="username">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Email">
                         </div>
                         <div class="form-group">
-                            <label for="password">Пароль:</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                         </div>
                         <div class="text-center">
 
 <!--                            <li><a href="/Diary/src/main/resources/templates/creatingAccount.html"><i class="btn btn-primary"></i>Создать аккаунт</a></li>-->
-                            <button type="submit" class="btn btn-primary" ><a href="/Diary/src/main/resources/templates/creatingAccount.html " style="color: white; text-decoration: none;">Создать аккаунт</a></button>
+                            <button type="submit" class="btn btn-primary" style="margin-right: 10px"><a href="/Diary/src/main/resources/templates/creatingAccount.html " style="color: white; text-decoration: none;">Создать аккаунт</a></button>
 
                             <button type="submit" class="btn btn-primary" id="ButtonLoginToAccount">Войти</button>
                         </div>

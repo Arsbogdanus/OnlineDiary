@@ -31,21 +31,27 @@
             <div class="card">
                 <div class="card-header text-center">Регистрация</div>
                 <div class="card-body">
-                    <form th:method="POST" th:action="@{/people}" th:object="${person}">
+                    <form th:method="POST" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
                         <div class="form-group">
-                            <label for="username">Email:</label>
-                            <input type="text" th:field="*{email}" class="form-control" id="username"/>
+                            <input type="text" placeholder="Email" th:field="*{email}" class="form-control" id="email"/>
+<!--                            <div style="color: red;" th:if="${#fields.hasErrors('')}" th:errors="*{email}">Email error</div>-->
                         </div>
                         <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" th:field="*{password}" class="form-control" id="password" name="password" />
+                            <input type="password" placeholder="Password" th:field="*{password}" class="form-control" id="password" name="password" />
+<!--                            <div style="color: red;" th:if="${#fields.hasErrors('')}" th:errors="*{password}">Password error</div>-->
+                        </div>
+                        <div class="form-group">
+                            <input type="repeat password" placeholder="Repeat password" th:field="*{password}" class="form-control" id="repeat password" name="repeat password" />
                         </div>
 <!--                        <div class="form-group">-->
 <!--                            <label for="confirmPassword">Подтвердите пароль:</label>-->
 <!--                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" />-->
 <!--                        </div>-->
                         <div class="text-center">
+                            <button type="submit" class="btn btn-primary" style="margin-right: 10px"><a href="/Diary/src/main/resources/templates/Login.html" style="color: white; text-decoration: none; ">Вернуться</a></button>
+
                             <button type="submit" class="btn btn-primary"><a href="/Diary/src/main/resources/templates/Login.html" style="color: white; text-decoration: none;">Зарегистрироваться</a></button>
+
                         </div>
                     </form>
                 </div>

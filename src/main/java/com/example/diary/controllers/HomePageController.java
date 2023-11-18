@@ -1,40 +1,36 @@
 package com.example.diary.controllers;
 
+import com.example.diary.models.Post;
+import com.example.diary.repository.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
 public class HomePageController {
-//    @GetMapping("/")
-//    public String home() {
-//        return "homePage"; // Это возвращает имя HTML-файла для домашней страницы (без расширения .html)
-//    }
-//
-//    private final Schedule schedule;
-//
-//    public HomePageController(Schedule schedule) {
-//        this.schedule = schedule;
-//    }
-//
-//    @GetMapping("/")
-//    public String showCurrentWeek(Model model) {
-//        model.addAttribute("lessons", schedule.getCurrentWeekLessons());
-//        model.addAttribute("homeworks", schedule.getCurrentWeekHomeworks());
-//        model.addAttribute("grades", schedule.getCurrentWeekGrades());
-//        return "homePage";
-//    }
-//
-//    @GetMapping("/previous-week")
-//    public String showPreviousWeek(Model model) {
-//        model.addAttribute("lessons", schedule.getPreviousWeekLessons());
-//        model.addAttribute("homeworks", schedule.getPreviousWeekHomeworks());
-//        model.addAttribute("grades", schedule.getPreviousWeekGrades());
-//        return "homePage";
-//    }
-//
-//    @GetMapping("/next-week")
-//    public String showNextWeek(Model model) {
-//        model.addAttribute("lessons", schedule.getNextWeekLessons());
-//        model.addAttribute("homeworks", schedule.getNextWeekHomeworks());
-//        model.addAttribute("grades", schedule.getNextWeekGrades());
-//        return "homePage";
-//    }
+
+    @Autowired
+    private PostRepository postRepository;
+
+    @GetMapping("/homePage")
+    public String noteMenu(Model model) {
+        Iterable<Post> posts = postRepository.findAll();
+        model.addAttribute("posts", posts);
+        return "homePage";
+    }
+
+    @GetMapping("/NewNote")
+    public String noteAdd(Model model) {
+        return "NewNote";
+    }
+
+    @PostMapping("/NewNote")
+    public String notePostAdd(@RequestParam String theme, @RequestParam String note, Model model) {
+        return "";
+    }
 }
 
 
