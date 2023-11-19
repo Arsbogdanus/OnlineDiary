@@ -15,7 +15,7 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 @Configuration
 @ComponentScan("com.example.diary")
 @EnableWebSecurity
-public class SpringConfig implements WebMvcConfigurer {
+public class SpringConfig{}/* implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
 
@@ -48,3 +48,4 @@ public class SpringConfig implements WebMvcConfigurer {
         registry.viewResolver(resolver);
     }
 }
+*/

@@ -20,32 +20,38 @@ public class LoginController {
         this.personDAO = personDAO;
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("person", personDAO.show(id));
-        return "templates/login";
-    }
-
-    @GetMapping("/{id}")
-    public String create(@ModelAttribute("person") Person person) {
-        return "templates/createAccount";
-    }
-
-    @PostMapping()
-    public String create(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
-    personDAO.save(person);
-    if (bindingResult.hasErrors()){
-        return "templates/createAccount";
-    }
-        return "redirect:/people";
-    }
-
-
-
-//    @GetMapping("/login")
-//    public String loginMethod(Model model, String error, String logout) {
+//    @GetMapping("/{id}")
+//    public String show(@PathVariable("id") int id, Model model) {
+//        model.addAttribute("person", personDAO.show(id));
 //        return "templates/login";
 //    }
+//
+//    @GetMapping("/{id}")
+//    public String create(@ModelAttribute("person") Person person) {
+//        return "templates/createAccount";
+//    }
+//
+//    @PostMapping()
+//    public String create(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
+//    personDAO.save(person);
+//    if (bindingResult.hasErцrors()){
+//        return "templates/createAccount";
+//    }
+//        return "redirect:/people";
+//    }
+
+
+
+    @GetMapping("/creatingAccount")
+    public String creatingAccountGet(Model model) {
+        return "templates/creatingAccount";
+    }
+    @PostMapping("/creatingAccount")
+    public String creatingAccountPost(@RequestParam String email, @RequestParam String password, Model model) {
+        Person person = new Person(1, email, password);
+        personDAO.save(person);
+        return "redirect:/уляля";
+    }
 //
 //    @PostMapping("/login")
 //    public String loginPost(Model model, String username, String password) {
