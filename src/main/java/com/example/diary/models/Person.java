@@ -1,10 +1,15 @@
 package com.example.diary.models;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Size(min = 5, max = 10, message = "Password should be between 5 and 10 characters")
     private String password;
@@ -12,8 +17,7 @@ public class Person {
     @Email
     private String email;
 
-    public Person(int id, String email, String password) {
-        this.id = id;
+    public Person(String email, String password) {
         this.email = email;
         this.password = password;
     }

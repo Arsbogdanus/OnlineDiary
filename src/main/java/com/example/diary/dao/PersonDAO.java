@@ -2,12 +2,14 @@ package com.example.diary.dao;
 
 import com.example.diary.models.Person;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Repository
 public class PersonDAO {
     private static int PEOPLE_COUNT;
     private static final String URL = "jdbc:mysql://localhost:3306/OnlineDiaryMySQL";
@@ -55,7 +57,7 @@ public class PersonDAO {
     }
     public void save(Person person){
         try {
-            PreparedStatement preparedstatement = connection.prepareStatement("INSERT INTO Person VALUES(1, ?, ?)");
+            PreparedStatement preparedstatement = connection.prepareStatement("INSERT INTO Person VALUES(id, ?, ?)");
 
             preparedstatement.setString(2, person.getEmail());
             preparedstatement.setString(1, person.getPassword());
