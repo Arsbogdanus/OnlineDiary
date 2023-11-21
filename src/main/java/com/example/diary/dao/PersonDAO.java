@@ -27,7 +27,8 @@ public class PersonDAO {
         }
 
         try {
-            connection = DriverManager.getConnection(URL, GMAIL, PASSWORD);
+            connection = DriverManager.getConnection(URL, GMAIL, PASSWORD);и
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
