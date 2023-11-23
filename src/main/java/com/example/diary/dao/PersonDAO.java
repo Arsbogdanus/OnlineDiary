@@ -1,40 +1,30 @@
 package com.example.diary.dao;
 
 import com.example.diary.models.Person;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-@Component
 @Repository
 public class PersonDAO {
     private static int PEOPLE_COUNT;
-    private static final String URL = "jdbc:mysql://localhost:3306/OnlineDiaryMySQL";
-    private static final String GMAIL = "mysql@gmail.com";
-    private static final String PASSWORD = "mysql";
+    private static final String URL = "jdbc:mysql://localhost:3306/MySQL";
+    private static final String USER = "root";
+    private static final String PASSWORD = "My18042010!";
 
+    private Connection connection;
 
-    private static final Connection connection;
-
-    static {
+    //@Autowired
+    public PersonDAO() {
         try {
-            Class.forName("org.mysql.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        try {
-            connection = DriverManager.getConnection(URL, GMAIL, PASSWORD);и
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+            this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (Throwable exception) {
+            System.out.println("exception=" + exception);
         }
     }
 
-    public Person show(int id){
+    public Person show(int id) {
         Person person = null;
 
         try {
@@ -56,12 +46,14 @@ public class PersonDAO {
         }
         return person;
     }
-    public void save(Person person){
-        try {
-            PreparedStatement preparedstatement = connection.prepareStatement("INSERT INTO Person VALUES(id, ?, ?)");
 
+    public void save(Person person) {
+        try {
+            PreparedStatement preparedstatement = connection.prepareStatement("INSERT INTO Person (id, email, password) VALUES(?,?,? /*1, 'arsbogdanus@gmail.com', 54321*/)");
+
+            preparedstatement.setInt(1, person.getId());
             preparedstatement.setString(2, person.getEmail());
-            preparedstatement.setString(1, person.getPassword());
+            preparedstatement.setInt(3, Integer.parseInt(person.getPassword()));
 
             preparedstatement.executeUpdate();
         } catch (SQLException e) {

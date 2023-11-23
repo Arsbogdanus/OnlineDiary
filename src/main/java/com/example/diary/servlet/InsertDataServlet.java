@@ -1,4 +1,5 @@
 package com.example.diary.servlet;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,11 +22,10 @@ public class InsertDataServlet extends HttpServlet {
         String email = request.getParameter("email");
 
         try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
-            String sql = "INSERT INTO Person (password, email) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO Person (password, email) VALUES (?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setString(1, username);
-                statement.setString(2, password);
-                statement.setString(3, email);
+                statement.setString(1, password);
+                statement.setString(2, email);
                 statement.executeUpdate();
             }
         } catch (SQLException e) {
@@ -34,5 +34,4 @@ public class InsertDataServlet extends HttpServlet {
 
         response.sendRedirect("success.html");
     }
-}
 }
