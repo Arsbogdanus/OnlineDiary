@@ -12,7 +12,7 @@ public class DiaryApplication extends SpringBootServletInitializer {
         SpringApplication.run(LoginController.class, args);
         try {
             LoginController loginController = new LoginController();
-            loginController.creatingAccountPost("arsbogdanus@gmail.com", "54321");
+            loginController.creatingAccountPost();
         } catch (Throwable exception) {
             System.out.println(exception.getMessage());
         }

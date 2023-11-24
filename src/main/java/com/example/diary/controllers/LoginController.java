@@ -23,11 +23,6 @@ public class LoginController {
         this.personDAO = new PersonDAO();
     }
 
-/*    public LoginController(PersonDAO personDAO) {
-        this.personDAO = personDAO;
-        System.out.println("costructor 2");
-    }*/
-
     @GetMapping("/creatingAccount")
     public String creatingAccountGet(Model model) {
         return "templates/creatingAccount";
@@ -36,9 +31,9 @@ public class LoginController {
     /*
         @PostMapping("/creatingAccount")
     */
-    public void creatingAccountPost(String email, String password) {
-        Person person = new Person(email, password);
+    public void creatingAccountPost(/*String email, String password*/) {
+        Person person = new Person();
         System.out.println(">>> " + person.getEmail() + ", " + person.getPassword());
         personDAO.save(person);
-    }
+        }
 }

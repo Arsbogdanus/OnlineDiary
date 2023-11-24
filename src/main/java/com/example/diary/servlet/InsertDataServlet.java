@@ -1,5 +1,7 @@
 package com.example.diary.servlet;
 
+import com.example.diary.dao.PersonDAO;
+import com.example.diary.models.Person;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,23 +17,22 @@ public class InsertDataServlet extends HttpServlet {
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/OnlineDiary";
     private static final String JDBC_USER = "Bogdan";
     private static final String JDBC_PASSWORD = "your_password";
+    private PersonDAO personDAO;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
 
-        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
-            String sql = "INSERT INTO Person (password, email) VALUES (?, ?)";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setString(1, password);
-                statement.setString(2, email);
-                statement.executeUpdate();
-            }
-        } catch (SQLException e) {
+        Person person = new Person();
+        person.setEmail(email);
+        person.setPassword(password);
+
+        try {
+            personDAO.save(person);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        response.sendRedirect("success.html");
+        response.sendRedirect("accountCreating.jsp");
     }
 }
